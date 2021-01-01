@@ -9,7 +9,17 @@ const session = require("express-session")
 const passport = require("passport")
 const initializePassport = require("./passport-config").default;
 const flash = require("express-flash")
-const {create_conference, get_conferences, cancel_conference, delete_conference, activate_conference, isAuth} = require("./modules")
+const {
+    create_conference, 
+    get_conferences, 
+    get_attendant_attending_conferences, 
+    get_attendant_not_attending_conferences, 
+    cancel_conference, delete_conference, 
+    activate_conference, 
+    attend,
+    cancel_attendance,
+    isAuth
+} = require("./modules")
 
 app.use("/public", express.static("/public/assets"))
 app.use(bodyParser.json())
@@ -60,7 +70,22 @@ app.get("/logout", (req, res) => {
 
 app.get("/speaker/conferences", (req, res) => {
     get_conferences(req.user._id).then(snap => {
-        console.log(snap)
+        res.json(snap)
+    }).catch(err => {
+        res.json(err)
+    })
+})
+
+app.get("/attendant/conferences/attending", (req, res) => {
+    get_attendant_attending_conferences(req.user._id).then(snap => {
+        res.json(snap)
+    }).catch(err => {
+        res.json(err)
+    })
+})
+
+app.get("/attendant/conferences/notattending", (req, res) => {
+    get_attendant_not_attending_conferences(req.user._id).then(snap => {
         res.json(snap)
     }).catch(err => {
         res.json(err)
@@ -97,12 +122,20 @@ app.post("/conference/delete", isAuth, (req, res) => {
     })
 })
 
-app.post("/conference/enter", isAuth, (req, res) => {
-
+app.post("/conference/attend", isAuth, (req, res) => {
+    attend(req.body._id, req.user._id).then(snap => {
+        res.json({okay: true})
+    }).catch(err => {
+        res.json({...err, okay: false})
+    })
 })
 
 app.post("/conference/withdraw", isAuth, (req, res) => {
-
+    cancel_attendance(req.body._id, req.user._id).then(snap => {
+        res.json({okay: true})
+    }).catch(err => {
+        res.json({okay: false})
+    })
 })
 
 

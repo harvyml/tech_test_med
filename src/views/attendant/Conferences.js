@@ -10,11 +10,6 @@ const Conferences = () => {
     return (
         <Row className="margined-top">
             <Col sm={12}>
-                <div className="title-container">
-                    <h3>Your conferences</h3>
-                </div>
-            </Col>
-            <Col sm={12}>
                 <div className="view-container">
                     <div className="view">
                         <ConferencesList />

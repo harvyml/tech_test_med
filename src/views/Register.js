@@ -11,9 +11,10 @@ import {password_validate} from "./components/utils/methods"
 const Register = () => {
     const [name, setName] = useState("")
     const [lastname, setLastname] = useState("")
-    const [user, setUser] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [password_validation, setPasswordValidation] = useState("")
+    const [role, setRole] = useState(1)
 
     function validateAndSendDataToServer(e){
         e.preventDefault()
@@ -23,10 +24,11 @@ const Register = () => {
                 name,
                 email,
                 password,
-                password_validation
+                password_validation,
+                role: role
             }).then(snap => {
                 console.log("done: ",snap)
-                snap.data.name ? window.location.href = "/panel" : null
+                snap.data.name ? window.location.href = "/login" : null
             })
             .catch(err => console.log("error: ", err))
         }else{
@@ -43,10 +45,10 @@ const Register = () => {
                             <Form.Text className="title center paddinged">Registro</Form.Text>
                             <Form.Group>
                                 <Form.Control placeholder="Nombre" id="name" onChange={(e) => setName(e.target.value)}/>
-                                <Form.Control placeholder="Email" id="email" type="email" onChange={(e) => setUser(e.target.value)}/>
+                                <Form.Control placeholder="Email" id="email" type="email" onChange={(e) => setEmail(e.target.value)}/>
                                 <Form.Group controlId="exampleForm.SelectCustomSizeSm">
                                     <Form.Label></Form.Label>
-                                    <Form.Control as="select" size="sm" custom>
+                                    <Form.Control onChange={(e) => setRole(e.target.value)} as="select" size="sm" custom>
                                         <option value="0">Speaker</option>
                                         <option value="1">Attendant</option>
                                     </Form.Control>

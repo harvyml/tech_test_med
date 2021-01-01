@@ -67,11 +67,30 @@ function isAuth(req, res, next){
     res.redirect("/login")
 }
 
+
 async function get_conferences(userId){
     var result = await Conference.find({userId: userId})
     return result
 }
 
+async function get_attendant_attending_conferences(userId){
+    var result = await Conference.find({attendants: userId})
+    return result
+}
+
+async function get_attendant_not_attending_conferences(userId){
+    var result = await Conference.find({attendants: {$ne: userId}})
+    return result
+}
+async function attend(_id, userId){
+    console.log("id: ", _id, "userId: ", userId)
+    var result = await Conference.findOneAndUpdate({_id: _id}, {$push: {attendants: userId}}, {upsert: true})
+    return result
+}
+async function cancel_attendance(_id, userId){
+    var result = await Conference.findOneAndUpdate({_id: _id}, {$pull: {attendants: userId}})
+    return result
+}
 //database queries
 module.exports = {
     password_validation,
@@ -81,5 +100,9 @@ module.exports = {
     get_conferences,
     cancel_conference,
     activate_conference,
-    delete_conference
+    delete_conference,
+    get_attendant_attending_conferences,
+    get_attendant_not_attending_conferences,
+    attend,
+    cancel_attendance
 }
