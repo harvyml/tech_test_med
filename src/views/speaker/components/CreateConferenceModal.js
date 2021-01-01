@@ -19,9 +19,8 @@ const CreateConferenceModal = ({ show, handleClose }) => {
 
     function updateDate(e) {
         setConference(current => {
-            var parsed_date = parse_date_to_ms(e.target.value)
             return {
-                name: current.name, date: parsed_date, location: current.location, quota: current.quota
+                name: current.name, date: e.target.value, location: current.location, quota: current.quota
             }
         })
         console.log(conference)
@@ -49,9 +48,11 @@ const CreateConferenceModal = ({ show, handleClose }) => {
         axios.post("/api/conference/create", conference).then(snap => {
             setSuccess(true)
             setErr(false)
+            handleClose()
         }).catch(err => {
             setSuccess(false)
             setErr(true)
+            handleClose()
         })
     }
     return (
@@ -68,7 +69,7 @@ const CreateConferenceModal = ({ show, handleClose }) => {
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlSelect2">
                             <Form.Label>Date of the conference</Form.Label>
-                            <Form.Control type="date" name="trip-start" value="2020-01-01" min="2021-01-03" max="2080-12-31" onChange={updateDate} />
+                            <Form.Control type="date" name="trip-start" min="2021-01-03" max="2080-12-31" onChange={updateDate} />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlSelect3">
                             <Form.Label>Conference location</Form.Label>
@@ -98,7 +99,7 @@ const CreateConferenceModal = ({ show, handleClose }) => {
 
 
 const SuccessfulCreation = ({handleClose}) => (
-    <Modal show={true} onHide={handleClose} animation={false}>
+    <Modal show={true} centered onHide={() => window.location.href = "/user?tab=1"} animation={false}>
         <Modal.Header closeButton>
             <Modal.Title>Create a new conference</Modal.Title>
         </Modal.Header>
@@ -106,7 +107,7 @@ const SuccessfulCreation = ({handleClose}) => (
             <span>The conference has been successfully created</span>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={() => window.location.href = "/user?tab=1"}>
                 Okay
             </Button>
         </Modal.Footer>

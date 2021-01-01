@@ -6,8 +6,9 @@ import useUser from "./components/useUser"
 import Sidebar from "./components/Sidebar"
 import Board from "./components/Board"
 import {BoardContext} from "./components/BoardContext"
-// import Users from "./Users"
-// import Tasks from "./Tasks"
+import Conferences from "./attendant/Conferences"
+
+
 import HomeBoard from "./HomeBoard"
 const Attendant = () => {
     const user = useUser()
@@ -42,7 +43,7 @@ const Attendant = () => {
 
 const TabHandler = ({active, user}) => {
     if(active == 0) return <Board boardname="Home" user={user} customContent={HomeBoard}/> 
-    // if(active == 1) return <Board boardname="Usuarios" user={user} customContent={Users}/> 
+    if(active == 1) return <Board boardname="Conferences" user={user} customContent={Conferences}/> 
     // if(active == 2) return <Board boardname="Tareas" user={user} customContent={Tasks}/> 
     return null
 }

@@ -11,24 +11,10 @@ const ConferencesList = () => {
     return (
         <Row className="margined-top">
             <Col sm={12}>
-                <ul>
-                    <li className="small grey"><span className="material-icons vertical-align-middle">cancel</span> Deactivate an event</li>
-                    <li className="small grey"><span className="material-icons vertical-align-middle">check</span> Activate an event</li>
-                    <li className="small grey"><span className="material-icons vertical-align-middle">delete</span> Delete an event</li>
-                </ul>
                 <AllConferences conferences={conferences}/>
             </Col>
         </Row>
     )   
-}
-
-function get_conferences(){
-    axios.get("/api/speaker/conferences").then(snap => {
-        console.log(snap.data)
-        return snap.data
-    }).catch(err => {
-        return err
-    })
 }
 
 const AllConferences = ({conferences}) => {
@@ -36,9 +22,9 @@ const AllConferences = ({conferences}) => {
         var _id = e.target.getAttribute("custom_id")
         var action = e.target.getAttribute("custom_action")
 
-        if(action == "activate"){
+        if(action == "attend"){
             activate_conference(_id)
-        }else if(action == "cancel"){
+        }else if(action == "cancel_attendance"){
             deactivate_conference(_id)
         }else if(action == "delete"){
             delete_conference(_id)

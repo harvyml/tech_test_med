@@ -2,4 +2,4 @@ import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import App from "../views/App";
 
-ReactDOM.hydrate(<App/>, document.querySelector("#root"))
+ReactDOM.render(<App/>, document.querySelector("#root"))

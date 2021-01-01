@@ -47,6 +47,18 @@ function create_conference(conference, userId){
     return new_conference.save()
 }
 
+function cancel_conference(conference_id, userId){
+    return Conference.findOneAndUpdate({_id: conference_id, userId}, {state: false})
+}
+
+function activate_conference(conference_id, userId){
+    return Conference.findOneAndUpdate({_id: conference_id, userId}, {state: true})
+}
+
+function delete_conference(conference_id, userId){
+    return Conference.findOneAndRemove({_id: conference_id, userId})
+}
+
 
 function isAuth(req, res, next){
     if(req.isAuthenticated()){
@@ -66,5 +78,8 @@ module.exports = {
     order_by_name,
     create_conference,
     isAuth,
-    get_conferences
+    get_conferences,
+    cancel_conference,
+    activate_conference,
+    delete_conference
 }

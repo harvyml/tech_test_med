@@ -9,7 +9,7 @@ const session = require("express-session")
 const passport = require("passport")
 const initializePassport = require("./passport-config").default;
 const flash = require("express-flash")
-const {create_conference, get_conferences, isAuth} = require("./modules")
+const {create_conference, get_conferences, cancel_conference, delete_conference, activate_conference, isAuth} = require("./modules")
 
 app.use("/public", express.static("/public/assets"))
 app.use(bodyParser.json())
@@ -28,7 +28,8 @@ app.use(flash())
 
 mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 })
 
 
@@ -67,13 +68,33 @@ app.get("/speaker/conferences", (req, res) => {
 })
 //post requests
 app.post("/conference/create", (req, res) => {
-    console.log(req.body)
     create_conference(req.body, req.user._id).then(snap => {
         res.json(snap)
     }).catch(err => res.json(err))
 })
-app.post("/conference/delete", isAuth, (req, res) => {
 
+app.post("/conference/cancel", (req, res) => {
+    cancel_conference(req.body._id, req.user._id).then(snap => {
+        res.json({message: "okay"})
+    }).catch(err => {
+        res.json({message: "failed"})
+    })
+})
+
+app.post("/conference/activate", (req, res) => {
+    activate_conference(req.body._id, req.user._id).then(snap => {
+        res.json({message: "okay"})
+    }).catch(err => {
+        res.json({message: "failed"})
+    })
+})
+
+app.post("/conference/delete", isAuth, (req, res) => {
+    delete_conference(req.body._id, req.user._id).then(snap => {
+        res.json({message: "okay"})
+    }).catch(err => {
+        res.json({message: "failed"})
+    })
 })
 
 app.post("/conference/enter", isAuth, (req, res) => {

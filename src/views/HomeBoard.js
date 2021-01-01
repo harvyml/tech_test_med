@@ -14,7 +14,7 @@ const HomeBoard = () => {
                                 <h3>Bienvenido {user.name}</h3>
                             </div>
                             <div className="img-container">
-                                <img src="./public/assets/illustration.png" alt="Home"/>
+                                
                             </div>
                         </div>
                     </div>

@@ -10,6 +10,9 @@
 i.material-icons.small{
     font-size: .9rem;
 }
+ul{
+    list-style: none;
+}
 .row{
     margin: 0;
 }.container-fluid{
@@ -27,6 +30,8 @@ i.material-icons.small{
     justify-content: space-between;
 }.vertical-align-sub{
     vertical-align: sub;
+}.vertical-align-middle{
+    vertical-align: middle;
 }
 
 .rounded{
@@ -98,6 +103,10 @@ i.material-icons{
 .sidebar .company-info .company-name .title{
     font-size: 1.2rem;
 }
+.list-group-item-action:hover {
+    color: rgb(188, 188, 255);
+    background-color: #212529;
+}
 .list-group-item-action:active {
     color: #ccc;
     background-color: #212529;
@@ -121,7 +130,17 @@ i.material-icons{
     padding-top: 1.3rem;
     padding-bottom: 1.3rem;
 }
+a.signout{
+    color: var(--font_main);
+}a.signout:hover{
+    color: rgb(206, 139, 139);
+    text-decoration: none;
+}a.sidebar-signout{
+    width: fit-content;
+    padding: 20px;
+    width: 100%;
 
+}
 
 /*Task (TODO) Crud*/
 .task-crud{

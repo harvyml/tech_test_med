@@ -6,7 +6,6 @@ module.exports = {
 		login_bundle: './src/hydrated/Login.js',
 		speaker_bundle: './src/hydrated/Speaker.js',
 		attendant_bundle: './src/hydrated/Attendant.js',
-		panel_bundle: './src/hydrated/Panel.js'
 	},
 	module: {
 		rules: [//These are the loaders

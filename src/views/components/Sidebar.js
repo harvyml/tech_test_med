@@ -13,7 +13,6 @@ const Sidebar = () => {
     const {active, setActive} = useContext(BoardContext)
     function handleActivateTab(e){
         setActive(e.target.getAttribute("boardkey"))
-        console.log(active, e.target.getAttribute("boardkey"))
     }
     return (
         <div className="sidebar">
@@ -47,7 +46,7 @@ function List({active, setActive}){
         <ListGroup variant="flush" onClick={setActive}>
             <ListGroup.Item action boardkey={0}><i className="material-icons paddinged-right small">home</i>Home</ListGroup.Item>
             <ListGroup.Item action boardkey={1}><i className="material-icons paddinged-right small">people</i>Conferences</ListGroup.Item>
-            <ListGroup.Item><a href="/api/logout">Cerrar Sesión</a></ListGroup.Item>
+            <a href="/api/logout" className="signout sidebar-signout">Cerrar Sesión</a>
         </ListGroup>
     )
 }
