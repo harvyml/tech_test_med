@@ -55,10 +55,16 @@ function isAuth(req, res, next){
     res.redirect("/login")
 }
 
+async function get_conferences(userId){
+    var result = await Conference.find({userId: userId})
+    return result
+}
+
 //database queries
 module.exports = {
     password_validation,
     order_by_name,
     create_conference,
-    isAuth
+    isAuth,
+    get_conferences
 }

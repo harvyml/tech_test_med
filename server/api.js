@@ -9,7 +9,7 @@ const session = require("express-session")
 const passport = require("passport")
 const initializePassport = require("./passport-config").default;
 const flash = require("express-flash")
-const {create_conference, isAuth} = require("./modules")
+const {create_conference, get_conferences, isAuth} = require("./modules")
 
 app.use("/public", express.static("/public/assets"))
 app.use(bodyParser.json())
@@ -56,6 +56,15 @@ app.get("/logout", (req, res) => {
     req.logout()
     res.redirect("/login")
 })
+
+app.get("/speaker/conferences", (req, res) => {
+    get_conferences(req.user._id).then(snap => {
+        console.log(snap)
+        res.json(snap)
+    }).catch(err => {
+        res.json(err)
+    })
+})
 //post requests
 app.post("/conference/create", (req, res) => {
     console.log(req.body)
@@ -63,12 +72,9 @@ app.post("/conference/create", (req, res) => {
         res.json(snap)
     }).catch(err => res.json(err))
 })
-
 app.post("/conference/delete", isAuth, (req, res) => {
 
 })
-
-app.post("/user/register", )
 
 app.post("/conference/enter", isAuth, (req, res) => {
 

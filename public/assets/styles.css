@@ -7,6 +7,9 @@
 :root{
     --font_main: #DDE2FF;
 }
+i.material-icons.small{
+    font-size: .9rem;
+}
 .row{
     margin: 0;
 }.container-fluid{
@@ -48,6 +51,12 @@ i.material-icons{
     text-align: center;
     margin: auto;
 }
+.small{
+    font-size: .9rem;
+}
+.grey{
+    color: #363740;
+}
 .margined-top{
     margin-top: 20px;
 }
@@ -70,6 +79,10 @@ i.material-icons{
 
 .inline-navbar .list-group-item{
     cursor: pointer;
+    color: white;
+}
+.inline-navbar .list-group-item:focus{
+    border: none;
 }
 /*Panel Styling*/
 .sidebar{
@@ -84,6 +97,14 @@ i.material-icons{
 }
 .sidebar .company-info .company-name .title{
     font-size: 1.2rem;
+}
+.list-group-item-action:active {
+    color: #ccc;
+    background-color: #212529;
+}.list-group-item-action:focus {
+    color: white;
+    outline-style: none;
+    background: #24272b !important;
 }
 .card.company-info-card{
     width: 100%;

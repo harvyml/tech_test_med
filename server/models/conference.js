@@ -8,7 +8,8 @@ const conference = new Schema({
     date: Number,
     location: String,
     quota: Number,
-    state: Boolean
+    state: Boolean,
+    attendants: {type: Array, required: false}
 }, {collection: "conferences"})
 
 module.exports = mongoose.model("conference", conference)

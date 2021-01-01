@@ -17,4 +17,24 @@ function password_validate(password, password_validation){
 }
 
 
-module.exports = {password_validate}
+function parse_date_to_ms(date){
+    date = Date.parse(date)
+    return date
+}
+
+function from_ms_to_date_format(ms){
+    let date = new Date(ms)
+    month = date.getMonth() + 1
+    if(month < 10){
+        month = `0${month}`
+    }else{
+        month = `${month}`
+    }
+    return {
+        year: date.getFullYear(),
+        month: month,
+        day: date.getDay()
+    }
+}
+
+module.exports = {password_validate, parse_date_to_ms, from_ms_to_date_format}

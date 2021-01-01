@@ -22,10 +22,12 @@ const Sidebar = () => {
                     <Card.Body>
                         <div className="main-company-info flex">
                             <div className="company-logo">
-                                <img src="./public/assets/logo.png" className="rounded"/>
+                                <i className="material-icons">person</i>
                             </div>
                             <div className="company-name justify-self-center side-paddinged">
                                 <span className="title vertical-align-sub semi-bold">{user.name}</span>
+                                <br />
+                                {user.role == 0 ? <span className="vertical-align-sub">Speaker</span> : <span className="vertical-align-sub">Attendant</span>}
                             </div>
                         </div>
                     </Card.Body>
@@ -43,8 +45,8 @@ const Sidebar = () => {
 function List({active, setActive}){
     return (
         <ListGroup variant="flush" onClick={setActive}>
-            <ListGroup.Item boardkey={0}><img src="./public/assets/home.png" className="paddinged-right"/>Home</ListGroup.Item>
-            <ListGroup.Item boardkey={1}><img src="./public/assets/people.png" className="paddinged-right"/>Conferences</ListGroup.Item>
+            <ListGroup.Item action boardkey={0}><i className="material-icons paddinged-right small">home</i>Home</ListGroup.Item>
+            <ListGroup.Item action boardkey={1}><i className="material-icons paddinged-right small">people</i>Conferences</ListGroup.Item>
             <ListGroup.Item><a href="/api/logout">Cerrar Sesión</a></ListGroup.Item>
         </ListGroup>
     )
