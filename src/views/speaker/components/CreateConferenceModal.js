@@ -14,16 +14,15 @@ const CreateConferenceModal = ({ show, handleClose }) => {
                 name: e.target.value, date: current.date, location: current.location, quota: current.quota
             }
         })
-        console.log(conference)
     }
 
     function updateDate(e) {
+        var parsed_date = parse_date_to_ms(e.target.value)
         setConference(current => {
             return {
-                name: current.name, date: e.target.value, location: current.location, quota: current.quota
+                name: current.name, date: parsed_date, location: current.location, quota: current.quota
             }
         })
-        console.log(conference)
     }
 
     function updateLocation(e) {
@@ -32,7 +31,6 @@ const CreateConferenceModal = ({ show, handleClose }) => {
                 name: current.name, date: current.date, location: e.target.value, quota: current.quota
             }
         })
-        console.log(conference)
     }
 
     function updateQuota(e) {
@@ -41,7 +39,6 @@ const CreateConferenceModal = ({ show, handleClose }) => {
                 name: current.name, date: current.date, location: e.target.value, quota: e.target.value
             }
         })
-        console.log(conference)
     }
 
     function createConference() {

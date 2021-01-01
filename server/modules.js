@@ -83,12 +83,19 @@ async function get_attendant_not_attending_conferences(userId){
     return result
 }
 async function attend(_id, userId){
-    console.log("id: ", _id, "userId: ", userId)
-    var result = await Conference.findOneAndUpdate({_id: _id}, {$push: {attendants: userId}}, {upsert: true})
-    return result
+    var condition = await Conference.findOne({_id: _id})
+    if(condition.quota < 1){
+        return condition
+    }
+    var exists = await Conference.findOne({_id: _id, attendants: userId})
+    if(!exists){
+        var result = await Conference.findOneAndUpdate({_id: _id}, {$push: {attendants: userId}, $inc: {quota: -1}}, {upsert: true})
+        return result
+    }
+    return exists
 }
 async function cancel_attendance(_id, userId){
-    var result = await Conference.findOneAndUpdate({_id: _id}, {$pull: {attendants: userId}})
+    var result = await Conference.findOneAndUpdate({_id: _id}, {$pull: {attendants: userId}, $inc: {quota: 1}})
     return result
 }
 //database queries

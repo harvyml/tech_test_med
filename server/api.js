@@ -94,8 +94,12 @@ app.get("/attendant/conferences/notattending", (req, res) => {
 //post requests
 app.post("/conference/create", (req, res) => {
     create_conference(req.body, req.user._id).then(snap => {
+        console.log(snap)
         res.json(snap)
-    }).catch(err => res.json(err))
+    }).catch(err => {
+        console.log(err)
+        res.json(err)
+    })
 })
 
 app.post("/conference/cancel", (req, res) => {
