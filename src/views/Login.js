@@ -32,7 +32,7 @@ const Login = () => {
     function execute_login(e){
         e.preventDefault()
         axios.post("/api/login", user).then(snap => {
-            window.location.href = "/panel"
+            window.location.href = "/user"
         }).catch(err => setError(true))
     }
 

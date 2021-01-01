@@ -48,9 +48,17 @@ function create_conference(conference, userId){
 }
 
 
+function isAuth(req, res, next){
+    if(req.isAuthenticated()){
+        return next()
+    }
+    res.redirect("/login")
+}
+
 //database queries
 module.exports = {
     password_validation,
     order_by_name,
-    create_conference
+    create_conference,
+    isAuth
 }

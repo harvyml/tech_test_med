@@ -1,10 +1,118 @@
-.title{
-    font-size: 1.5rem;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center ;
+*{
+    margin: 0;
+    padding: 0;
 }
 
+/*General Styling*/
+:root{
+    --font_main: #DDE2FF;
+}
+.row{
+    margin: 0;
+}.container-fluid{
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex.space-around{
+    justify-content: space-around;
+}.flex.space-between{
+    justify-content: space-between;
+}.vertical-align-sub{
+    vertical-align: sub;
+}
+
+.rounded{
+    border-radius: 50% !important;
+}
+
+.semi-bold{
+    font-weight: bold;
+}
+i.material-icons{
+    vertical-align: middle;
+}
+.col-md-3, .col-md-9, .col-lg-3, .col-lg-9{
+    margin: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.title{
+    font-size: 1.6rem;
+}
+.center{
+    text-align: center;
+    margin: auto;
+}
 .margined-top{
-    margin-top: 10px;
+    margin-top: 20px;
+}
+.paddinged{
+    padding: 20px;
+}
+.side-paddinged{
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.paddinged-right{
+    padding-right: 1rem;
+}
+.btn-float-right{
+    float: right;
+    width: 300px;
+    padding: .5rem;
+}
+
+
+.inline-navbar .list-group-item{
+    cursor: pointer;
+}
+/*Panel Styling*/
+.sidebar{
+    width: 100%;
+    background-color: #363740;
+    color: var(--font_main);
+    height: 100vh;
+}
+.sidebar .company-info{
+    width: 100%;
+    background-color: #47495B;
+}
+.sidebar .company-info .company-name .title{
+    font-size: 1.2rem;
+}
+.card.company-info-card{
+    width: 100%;
+    border-radius: 0;
+    background-color: transparent;
+}
+.inline-navbar .card{
+    background-color: transparent;
+}
+.inline-navbar .card .list-group-flush .list-group-item{
+    border-radius: 0;
+    border-width: 0 0 0px;
+    background: transparent;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+}
+
+
+/*Task (TODO) Crud*/
+.task-crud{
+    width: 100%;
+}
+.task-crud ul{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0 0 0;
+    vertical-align: middle;
+}.task-crud ul li{
+    cursor: pointer;
 }

@@ -9,7 +9,7 @@ const session = require("express-session")
 const passport = require("passport")
 const initializePassport = require("./passport-config").default;
 const flash = require("express-flash")
-const {create_conference} = require("./modules")
+const {create_conference, isAuth} = require("./modules")
 
 app.use("/public", express.static("/public/assets"))
 app.use(bodyParser.json())
@@ -78,12 +78,6 @@ app.post("/conference/withdraw", isAuth, (req, res) => {
 
 })
 
-function isAuth(req, res, next){
-    if(req.isAuthenticated()){
-        return next()
-    }
-    res.redirect("/login")
-}
 
 
 

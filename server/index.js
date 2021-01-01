@@ -20,6 +20,9 @@ const registerHTML = fs.readFileSync("./public/register.html", "utf8")
 const loginHTML = fs.readFileSync("./public/login.html", "utf8")
 const attendantHTML = fs.readFileSync("./public/attendant.html", "utf8")
 const speakerHTML = fs.readFileSync("./public/speaker.html", "utf8")
+
+//external modules
+const {isAuth} = require("./modules")
 //using api route
 // app.use("/", routes)
 //session configuration
@@ -46,7 +49,7 @@ router.get("/register", (req, res) => {
     res.send(registerHTML)
 })
 
-router.get("/user", (req, res) => {
+router.get("/user", isAuth, (req, res) => {
     //role 0: speaker
     //role 1: attendant
     if(req.user.role == 0){
@@ -56,4 +59,4 @@ router.get("/user", (req, res) => {
     }
 })
 
-app.listen(3000 || process.env.PORT, () => console.log("listening on port 3000"))
+app.listen(process.env.PORT || 3000, () => console.log("listening on port 3000"))
