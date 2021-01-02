@@ -96,7 +96,7 @@ const CreateConferenceModal = ({ show, handleClose }) => {
 
 
 const SuccessfulCreation = ({handleClose}) => (
-    <Modal show={true} centered onHide={() => window.location.href = "/user?tab=1"} animation={false}>
+    <Modal show={true} centered onHide={() => window.location.href = "/user?tab=0"} animation={false}>
         <Modal.Header closeButton>
             <Modal.Title>Create a new conference</Modal.Title>
         </Modal.Header>
@@ -104,7 +104,7 @@ const SuccessfulCreation = ({handleClose}) => (
             <span>The conference has been successfully created</span>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={() => window.location.href = "/user?tab=1"}>
+            <Button variant="secondary" onClick={() => window.location.href = "/user?tab=0"}>
                 Okay
             </Button>
         </Modal.Footer>
