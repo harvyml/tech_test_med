@@ -10,7 +10,6 @@ const Login = () => {
     const [user, setUser] = useState({email: "", password: ""})
     const [error, setError] = useState(false)
     function updateEmail(e){
-        console.log(user)
         setUser(current => {
             return {
                 email: e.target.value,
@@ -20,7 +19,6 @@ const Login = () => {
     }
 
     function updatePassword(e){
-        console.log(user)
         setUser(current => {
             return {
                 email: current.email,

@@ -10,7 +10,6 @@ import {password_validate} from "./components/utils/methods"
 
 const Register = () => {
     const [name, setName] = useState("")
-    const [lastname, setLastname] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [password_validation, setPasswordValidation] = useState("")
@@ -27,10 +26,9 @@ const Register = () => {
                 password_validation,
                 role: role
             }).then(snap => {
-                console.log("done: ",snap)
                 snap.data.name ? window.location.href = "/login" : null
             })
-            .catch(err => console.log("error: ", err))
+            .catch(err => alert("error: ", err.message))
         }else{
             alert(validation.err.message)
         }

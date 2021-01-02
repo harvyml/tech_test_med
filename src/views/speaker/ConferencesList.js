@@ -58,14 +58,14 @@ const AllConferences = ({conferences}) => {
         axios.post("/api/conference/cancel", {_id: conference_id}).then(snap => {
             window.location.href = "/user?tab=0"
             setLoading(false)
-        }).catch(err => console.log(err))
+        }).catch(err => alert(err))
     }
     function delete_conference(conference_id){
         setLoading(true)
         axios.post("/api/conference/delete", {_id: conference_id}).then(snap => {
             window.location.href = "/user?tab=0"
             setLoading(false)
-        }).catch(err => console.log(err))
+        }).catch(err => alert(err))
     }
     function get_attendants(_id){
         setLoading(true)
@@ -73,7 +73,7 @@ const AllConferences = ({conferences}) => {
             setSelectedConferenceInfo(snap.data)
             setAttendants(snap.data.attendants)
             setLoading(false)
-        }).catch(err => console.log(err))
+        }).catch(err => alert(err))
     }
 
     return (
