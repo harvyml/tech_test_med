@@ -1,10 +1,7 @@
-import React, {useState, useEffect} from "react"
-import ReactDOM from "react-dom"
-
+import React, {useState} from "react"
 //bootstrap
 import {Container, Row, Col, Button, Form, Modal} from "react-bootstrap"
 import axios from "axios"
-import ModalHeader from "react-bootstrap/esm/ModalHeader"
 
 const Login = () => {
     const [user, setUser] = useState({email: "", password: ""})
