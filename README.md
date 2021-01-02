@@ -6,6 +6,7 @@ Go the the app
 
 ## Important things about the App
 - Be sure that when you sign up you do it with the actual role you want to play at the conferences. If you are a the Speaker then you should sign up as a **speaker** and the other way around for **attendands**.
+- The App is not responsive yet
 
 #### If you sign up as a speaker
 - When you create a conference and an attendant has already marked that they will attend then you cannot cancel or delete the conference. So be sure if you want to create a conference.
