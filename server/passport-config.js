@@ -10,8 +10,8 @@ const { password_validation } = require("./modules")
 passport.serializeUser((user, done) => {
     done(null, user._id)
 })
-passport.deserializeUser(async (id, done) => {
-    const user = await User.findById(id)
+passport.deserializeUser(async (_id, done) => {
+    const user = await User.findById(_id)
     done(null, user)
 })
 

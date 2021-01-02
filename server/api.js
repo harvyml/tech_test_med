@@ -11,7 +11,9 @@ const initializePassport = require("./passport-config").default;
 const flash = require("express-flash")
 const {
     create_conference, 
-    get_conferences, 
+    get_user,
+    get_conferences,
+    get_conference, 
     get_attendant_attending_conferences, 
     get_attendant_not_attending_conferences, 
     cancel_conference, delete_conference, 
@@ -49,12 +51,23 @@ app.get("/user", (req, res) => {
     res.json(req.user)
 })
 
+app.get("/err", (req, res) => {
+    res.status(400).json({err: {message: "Error"}})
+})
+//get user info from another user
+app.get("/user/get", (req, res) => {
+    get_user(req.query.userId).then(snap => {
+        res.json(snap)
+    }).catch(err => {
+        res.json(err)
+    })
+})
 //session handling
 app.post("/login", passport.authenticate("local-signin", {
     successRedirect: "/api/user",
     successMessage: "Welcome!",
     successFlash: false,
-	failureRedirect: "/api?err=true",
+	failureRedirect: "/api/err",
 	failureFlash: true
 }))
 app.post("/register", passport.authenticate("local-signup", {
@@ -66,6 +79,14 @@ app.post("/register", passport.authenticate("local-signup", {
 app.get("/logout", (req, res) => {
     req.logout()
     res.redirect("/login")
+})
+
+app.get("/conference", (req, res) => {
+    get_conference(req.query._id).then(snap => {
+        res.json(snap)
+    }).catch(err => {
+        res.json(err)
+    })
 })
 
 app.get("/speaker/conferences", (req, res) => {
@@ -91,6 +112,7 @@ app.get("/attendant/conferences/notattending", (req, res) => {
         res.json(err)
     })
 })
+
 //post requests
 app.post("/conference/create", (req, res) => {
     create_conference(req.body, req.user._id).then(snap => {
@@ -127,7 +149,7 @@ app.post("/conference/delete", isAuth, (req, res) => {
 })
 
 app.post("/conference/attend", isAuth, (req, res) => {
-    attend(req.body._id, req.user._id).then(snap => {
+    attend(req.body._id, req.user._id, req.user.name, req.user.email).then(snap => {
         res.json({okay: true})
     }).catch(err => {
         res.json({...err, okay: false})

@@ -26,7 +26,7 @@ const Board = ({user, customContent, boardname}) => {
                             </Nav.Item>
                             <Nav.Item>
                             <Nav.Link eventKey="disabled" disabled>
-                                |{"  " + user.name}
+                                |   {user ? user.name : null}
                             </Nav.Link>
                             </Nav.Item>
                         </Nav>

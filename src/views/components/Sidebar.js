@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
-import ReactDOM from "react-dom"
-import axios from "axios"
+import React, { useContext } from "react"
 //bootstrap
 import {Card, ListGroup} from "react-bootstrap"
 import {BoardContext} from "./BoardContext"
@@ -34,7 +32,7 @@ const Sidebar = () => {
             </div>
             <div className="inline-navbar">
                 <Card>
-                    <List setActive={handleActivateTab}/>
+                    <List active={active} setActive={handleActivateTab}/>
                 </Card>
             </div>
         </div>
@@ -43,10 +41,10 @@ const Sidebar = () => {
 
 function List({active, setActive}){
     return (
-        <ListGroup variant="flush" onClick={setActive}>
-            <ListGroup.Item action boardkey={0}><i className="material-icons paddinged-right small">home</i>Home</ListGroup.Item>
-            <ListGroup.Item action boardkey={1}><i className="material-icons paddinged-right small">people</i>Conferences</ListGroup.Item>
-            <a href="/api/logout" className="signout sidebar-signout">Cerrar Sesión</a>
+        <ListGroup variant="flush" onClick={setActive} defaultActiveKey="">
+            {active == 0 ? <ListGroup.Item active href="user?tab=0" action boardkey={0}><i className="material-icons paddinged-right small">people</i>Conferences</ListGroup.Item> : <ListGroup.Item  href="user?tab=0" action boardkey={0}><i className="material-icons paddinged-right small">people</i>Conferences</ListGroup.Item>}
+            {active == 1 ? <ListGroup.Item action boardkey={1} className="active" href="user?tab=1"><i className="material-icons paddinged-right small">home</i>Profile</ListGroup.Item> : <ListGroup.Item action boardkey={1} href="user?tab=1"><i className="material-icons paddinged-right small">person_outlined</i>Profile</ListGroup.Item>}
+            <a href="/api/logout" className="signout sidebar-signout"><span className="vertical-align-middle paddinged-right material-icons">power_settings_new</span>Log out</a>
         </ListGroup>
     )
 }

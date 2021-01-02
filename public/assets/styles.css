@@ -107,9 +107,15 @@ i.material-icons{
     color: rgb(188, 188, 255);
     background-color: #212529;
 }
+.list-group-item-action.active {
+    color: white;
+    outline-style: none;
+    background: #24272b !important;
+}
 .list-group-item-action:active {
-    color: #ccc;
-    background-color: #212529;
+    color: white;
+    outline-style: none;
+    background: #24272b !important;
 }.list-group-item-action:focus {
     color: white;
     outline-style: none;

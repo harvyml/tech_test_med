@@ -4,9 +4,7 @@ import {Row, Col, Button} from "react-bootstrap"
 import CreateConferenceModal from "./components/CreateConferenceModal"
 import ConferencesList from "./ConferencesList"
 const Conferences = () => {
-    const user = useFetch("/api/user")
     const [showCreateConference, setShowCreateConference] = useState(false)
-    
     return (
         <Row className="margined-top">
             <Col sm={10}>

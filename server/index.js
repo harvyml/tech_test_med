@@ -50,8 +50,6 @@ router.get("/register", (req, res) => {
 })
 
 router.get("/user", isAuth, (req, res) => {
-    //role 0: speaker
-    //role 1: attendant
     if(req.user.role == 0){
         res.send(speakerHTML)
     }else if(req.user.role == 1){

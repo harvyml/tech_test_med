@@ -32,7 +32,11 @@ const Login = () => {
     function execute_login(e){
         e.preventDefault()
         axios.post("/api/login", user).then(snap => {
-            window.location.href = "/user"
+            if(snap.data.name){
+                window.location.href = "/user?tab=0"
+            }else{
+                setError(true)
+            }
         }).catch(err => setError(true))
     }
 

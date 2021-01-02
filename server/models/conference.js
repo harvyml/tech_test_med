@@ -9,7 +9,13 @@ const conference = new Schema({
     location: String,
     quota: Number,
     state: Boolean,
-    attendants: {type: Array, required: false}
+    attendants: [
+        {
+            name: String,
+            userId: Schema.Types.ObjectId,
+            email: String
+        }
+    ]
 }, {collection: "conferences"})
 
 module.exports = mongoose.model("conference", conference)

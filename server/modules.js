@@ -47,7 +47,11 @@ function create_conference(conference, userId){
     return new_conference.save()
 }
 
-function cancel_conference(conference_id, userId){
+async function cancel_conference(conference_id, userId){
+    var condition = await Conference.findOne({_id: conference_id})
+    if(condition.attendants.length > 0){
+        return condition
+    }
     return Conference.findOneAndUpdate({_id: conference_id, userId}, {state: false})
 }
 
@@ -73,31 +77,42 @@ async function get_conferences(userId){
     return result
 }
 
+async function get_conference(_id){
+    var result = await Conference.findOne({_id: _id})
+    return result
+}
+
 async function get_attendant_attending_conferences(userId){
-    var result = await Conference.find({attendants: userId})
+    var result = await Conference.find({attendants: {$elemMatch: {userId: userId}}, state: true})
     return result
 }
 
 async function get_attendant_not_attending_conferences(userId){
-    var result = await Conference.find({attendants: {$ne: userId}})
+    var result = await Conference.find({attendants: {$not: {$elemMatch: {userId: userId}}}, state: true})
     return result
 }
-async function attend(_id, userId){
+async function attend(_id, userId, attendant_name, attendant_email){
     var condition = await Conference.findOne({_id: _id})
     if(condition.quota < 1){
-        return condition
+        return {err: {message: "There are no remaining spots in this conference, sorry"}}
     }
-    var exists = await Conference.findOne({_id: _id, attendants: userId})
+    var exists = await Conference.findOne({_id: _id, attendants: {userId: userId}})
     if(!exists){
-        var result = await Conference.findOneAndUpdate({_id: _id}, {$push: {attendants: userId}, $inc: {quota: -1}}, {upsert: true})
+        var result = await Conference.findOneAndUpdate({_id: _id}, {$push: {attendants: {userId: userId, name: attendant_name, email: attendant_email}}, $inc: {quota: -1}}, {upsert: true})
         return result
     }
     return exists
 }
 async function cancel_attendance(_id, userId){
-    var result = await Conference.findOneAndUpdate({_id: _id}, {$pull: {attendants: userId}, $inc: {quota: 1}})
+    var result = await Conference.findOneAndUpdate({_id: _id}, {$pull: {attendants: {userId: userId}}, $inc: {quota: 1}})
     return result
 }
+
+async function get_user(_id){
+    var result = await User.findOne({_id})
+    return result
+}
+
 //database queries
 module.exports = {
     password_validation,
@@ -105,6 +120,8 @@ module.exports = {
     create_conference,
     isAuth,
     get_conferences,
+    get_conference,
+    get_user,
     cancel_conference,
     activate_conference,
     delete_conference,

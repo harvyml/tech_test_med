@@ -36,7 +36,7 @@ const CreateConferenceModal = ({ show, handleClose }) => {
     function updateQuota(e) {
         setConference(current => {
             return {
-                name: current.name, date: current.date, location: e.target.value, quota: e.target.value
+                name: current.name, date: current.date, location: current.location, quota: e.target.value
             }
         })
     }

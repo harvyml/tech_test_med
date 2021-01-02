@@ -8,15 +8,9 @@ import Board from "./components/Board"
 import {BoardContext} from "./components/BoardContext"
 import Conferences from "./speaker/Conferences"
 // import Tasks from "./Tasks"
-import HomeBoard from "./HomeBoard"
+import Profile from "./Profile"
 const Speaker = () => {
     const user = useUser()
-    //just added for now while the conditional session handling bug is corrected
-    useEffect(() => {
-        if(!user){
-            window.location.href = "/login"
-        }
-    }, [user])
     const [active, setActive] = useState(0)
     useEffect(() => {
         const url = new URL(window.location.href);
@@ -41,9 +35,8 @@ const Speaker = () => {
 
 
 const TabHandler = ({active, user}) => {
-    if(active == 0) return <Board boardname="Home" user={user} customContent={HomeBoard}/> 
-    if(active == 1) return <Board boardname="Conferences" user={user} customContent={Conferences}/> 
-    // if(active == 2) return <Board boardname="Tareas" user={user} customContent={Tasks}/> 
+    if(active == 0) return <Board boardname="Conferences" user={user} customContent={Conferences}/> 
+    if(active == 1) return <Board boardname="Profile" user={user} customContent={Profile}/> 
     return null
 }
 
