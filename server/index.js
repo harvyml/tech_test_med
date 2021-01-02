@@ -22,7 +22,7 @@ const attendantHTML = fs.readFileSync("./public/attendant.html", "utf8")
 const speakerHTML = fs.readFileSync("./public/speaker.html", "utf8")
 
 //external modules
-const {isAuth} = require("./modules")
+const {isAuth, isAuthRedirect} = require("./modules")
 //using api route
 // app.use("/", routes)
 //session configuration
@@ -36,16 +36,16 @@ app.use(passport.session())
 app.use("/api", api)
 app.use("/", router)
 
-router.get("/", (req, res) => {
-    res.send(indexHTML)
+router.get("/", isAuth, (req, res) => {
+    res.redirect("/user")
 })
 
 
-router.get("/login", (req, res) => {
+router.get("/login", isAuthRedirect, (req, res) => {
     res.send(loginHTML)
 })
 
-router.get("/register", (req, res) => {
+router.get("/register", isAuthRedirect, (req, res) => {
     res.send(registerHTML)
 })
 

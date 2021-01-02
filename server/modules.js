@@ -71,6 +71,14 @@ function isAuth(req, res, next){
     res.redirect("/login")
 }
 
+function isAuthRedirect(req, res, next){
+    if(req.isAuthenticated()){
+        res.redirect("/user")
+    }else{
+        return next()
+    }
+}
+
 
 async function get_conferences(userId){
     var result = await Conference.find({userId: userId})
@@ -119,6 +127,7 @@ module.exports = {
     order_by_name,
     create_conference,
     isAuth,
+    isAuthRedirect,
     get_conferences,
     get_conference,
     get_user,

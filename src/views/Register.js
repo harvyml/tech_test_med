@@ -42,7 +42,12 @@ const Register = () => {
                 <Row className="justify-content-md-center">
                     <Col sm={12} md={6} lg={6}>
                         <Form onSubmit={validateAndSendDataToServer}>
-                            <Form.Text className="title center paddinged">Registro</Form.Text>
+                            <Form.Text className="title center paddinged">Sign Up</Form.Text>
+                            <Form.Text>
+                            Sign Up to access a system where you can create and attend to conferences, be sure to register with the 
+                            actual role that you will play at the conference because attendants can only attend to conference but 
+                            speakers create the conference and cannot attend to them
+                            </Form.Text>
                             <Form.Group>
                                 <Form.Control placeholder="Nombre" id="name" onChange={(e) => setName(e.target.value)}/>
                                 <Form.Control placeholder="Email" id="email" type="email" onChange={(e) => setEmail(e.target.value)}/>
