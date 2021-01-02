@@ -2,6 +2,8 @@
 
 This is a technical-test app created for people that want to create and speak at their own conference and also for people that want to attend their conferences.
 
+Go the the app 
+
 ## Important things about the App
 - Be sure that when you sign up you do it with the actual role you want to play at the conferences. If you are a the Speaker then you should sign up as a **speaker** and the other way around for **attendands**.
 
@@ -21,3 +23,5 @@ The app was built using React and has an API built with Node, Express and MongoD
 ## Running the app locally
 -	Clone the app and run ```npm install``` 
 -	Create a ```.env``` file and add a ```DB``` variable with your path to a MongoDB database. Also add  a ```SECRET_WORD_FOR_SESSION_HANDLING```  variable with any value that you want to assign.
+
+#### You're ready to go!
