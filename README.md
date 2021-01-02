@@ -16,8 +16,8 @@ Go the the app
 
 ## About the App itself
 
-The app was built using React and has an API built with Node, Express and MongoDB.
-
+- The app was built using React and has an API built with Node, Express and MongoDB.
+- I used passport and express-session for session handling.
 - the routes are protected by the role of the user at the endpoint /user. If you are a speaker you will only be able to see the speaker panel and the same happens for attendants.
 - The two roles **Speaker** and **Attendant** are represented in the code as **0** and **1** respectively.
 

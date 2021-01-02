@@ -53,8 +53,9 @@ const Login = () => {
                                 conferences!
                             </Form.Text>
                             <Form.Group className="margined-top">
-                                <Form.Control placeholder="Email" id="email" onChange={updateEmail}/>
-                                <Form.Control placeholder="Password" id="password" onChange={updatePassword}/>
+                                <Form.Control placeholder="Email" id="email" type="text" onChange={updateEmail}/>
+                                <Form.Control placeholder="Password" id="password" type="password" onChange={updatePassword}/>
+                                <Form.Text className="text-muted"><a href="/login">¿Don't have an account yet? Sign Up here</a></Form.Text>
                                 <Button type="submit"variant="dark" className="margined-top" id="submit">Sign in</Button>
                             </Form.Group>
                         </Form>

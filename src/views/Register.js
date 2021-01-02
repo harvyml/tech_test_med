@@ -43,12 +43,12 @@ const Register = () => {
                     <Col sm={12} md={6} lg={6}>
                         <Form onSubmit={validateAndSendDataToServer}>
                             <Form.Text className="title center paddinged">Sign Up</Form.Text>
-                            <Form.Text>
+                            <Form.Text className="center">
                             Sign Up to access a system where you can create and attend to conferences, be sure to register with the 
                             actual role that you will play at the conference because attendants can only attend to conference but 
                             speakers create the conference and cannot attend to them
                             </Form.Text>
-                            <Form.Group>
+                            <Form.Group className="margined-top">
                                 <Form.Control placeholder="Nombre" id="name" onChange={(e) => setName(e.target.value)}/>
                                 <Form.Control placeholder="Email" id="email" type="email" onChange={(e) => setEmail(e.target.value)}/>
                                 <Form.Group controlId="exampleForm.SelectCustomSizeSm">
@@ -61,7 +61,7 @@ const Register = () => {
                             </Form.Group>
                                 <Form.Control placeholder="Contraseña" id="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
                                 <Form.Control placeholder="Repetir Contraseña" id="password" type="password" onChange={(e) => setPasswordValidation(e.target.value)}/>
-                                <Form.Text className="text-muted"><a href="/login">¿Ya estás registrado?</a></Form.Text>
+                                <Form.Text className="text-muted"><a href="/login">¿Did you already sign up?</a></Form.Text>
                                 <Button type="submit"variant="dark" className="margined-top" id="submit">Send</Button>
                             
                         </Form>
