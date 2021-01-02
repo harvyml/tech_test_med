@@ -62,7 +62,7 @@ const Register = () => {
                                 <Form.Control placeholder="Contraseña" id="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
                                 <Form.Control placeholder="Repetir Contraseña" id="password" type="password" onChange={(e) => setPasswordValidation(e.target.value)}/>
                                 <Form.Text className="text-muted"><a href="/login">¿Did you already sign up? Sign in here</a></Form.Text>
-                                <Button type="submit"variant="dark" className="margined-top" id="submit">Send</Button>
+                                <Button type="submit"variant="dark" className="margined-top" id="submit">Sign Up</Button>
                             
                         </Form>
                     </Col>
